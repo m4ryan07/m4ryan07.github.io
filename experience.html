@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Experience — M Aryan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --border: #1e1e2e;
+      --accent: #7c6af7;
+      --accent2: #4fd1c5;
+      --text: #e8e8f0;
+      --muted: #6b6b80;
+      --card: #13131c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.4;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 48px;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--text); text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+    .page-header {
+      padding: 160px 48px 80px;
+      max-width: 1100px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+
+    .page-label { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+    .page-title { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.03em; }
+
+    main {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 48px 100px;
+      position: relative; z-index: 1;
+    }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .exp-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px;
+      transition: all 0.25s;
+    }
+
+    .exp-card:hover {
+      border-color: rgba(124,106,247,0.35);
+      transform: translateY(-4px);
+    }
+
+    .exp-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .exp-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .exp-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* CONTRIBUTIONS */
+    .section-heading {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .contributions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 60px;
+    }
+
+    .contribution-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px 28px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      transition: border-color 0.2s;
+    }
+
+    .contribution-item:hover { border-color: rgba(79,209,197,0.3); }
+
+    .contrib-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent2);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .contribution-item p {
+      font-size: 0.97rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .contribution-item p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* GOALS */
+    .goals-box {
+      background: linear-gradient(135deg, rgba(124,106,247,0.08) 0%, rgba(79,209,197,0.05) 100%);
+      border: 1px solid rgba(124,106,247,0.2);
+      border-radius: 14px;
+      padding: 40px;
+    }
+
+    .goals-box h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .goals-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .goals-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 0.97rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .goals-list li::before {
+      content: '→';
+      color: var(--accent);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .goals-list li strong { color: var(--text); font-weight: 500; }
+
+    .cta-row {
+      margin-top: 60px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 32px 36px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .cta-row p {
+      flex: 1;
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .cta-row p strong { color: var(--text); font-weight: 500; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 24px; border-radius: 8px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 500;
+      text-decoration: none; transition: all 0.2s; white-space: nowrap;
+    }
+
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #6a58e8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,106,247,0.35); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+    footer p { font-size: 0.85rem; color: var(--muted); }
+    footer a { color: var(--muted); font-size: 0.85rem; text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .page-header, main { padding-left: 24px; padding-right: 24px; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .cta-row { flex-direction: column; align-items: flex-start; }
+      footer { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">M<span>.</span>Aryan</a>
+    <ul class="nav-links">
+      <li><a href="education.html">Education</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="experience.html" class="active">Experience</a></li>
+      <li><a href="mailto:m.aryan@mitwpu.edu.in">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <p class="page-label">Journey</p>
+    <h1 class="page-title">Experience</h1>
+  </div>
+
+  <main>
+
+    <div class="exp-grid reveal">
+      <div class="exp-card">
+        <div class="exp-icon">🤝</div>
+        <h3>Collaborative Projects</h3>
+        <p>Actively contributed to several group projects throughout my academic journey — taking on roles in development, testing, and design across different project phases.</p>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">💡</div>
+        <h3>Self-Directed Learning</h3>
+        <p>Continuously building skills outside the classroom through personal projects, online resources, and hands-on experimentation with new technologies.</p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <h2 class="section-heading">Contributions & Involvement</h2>
+      <div class="contributions-list">
+        <div class="contribution-item">
+          <div class="contrib-dot"></div>
+          <p>Contributed to the <strong>design and development</strong> of a browser-based video meeting platform, working across frontend and backend layers.</p>
+        </div>
+        <div class="contribution-item">
+          <div class="contrib-dot"></div>
+          <p>Participated in <strong>group problem-solving sessions</strong> for systems programming projects including the Railway Reservation System.</p>
+        </div>
+        <div class="contribution-item">
+          <div class="contrib-dot"></div>
+          <p>Assisted in <strong>testing and debugging</strong> phases of team projects, ensuring reliable output and identifying edge cases.</p>
+        </div>
+        <div class="contribution-item">
+          <div class="contrib-dot"></div>
+          <p>Explored <strong>AI and chatbot development</strong> independently, applying NLP concepts to build a domain-specific information assistant.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <h2 class="section-heading">Goals & Plans</h2>
+      <div class="goals-box">
+        <h3>What's next for me</h3>
+        <ul class="goals-list">
+          <li>Secure an <strong>internship in software development or tech</strong> during the upcoming break to gain structured industry experience.</li>
+          <li>Deepen my knowledge of <strong>full-stack development</strong> and contribute to production-level codebases.</li>
+          <li>Build more projects independently and maintain an <strong>active GitHub profile</strong> as a portfolio of consistent growth.</li>
+          <li>Apply the blend of <strong>CS and business systems knowledge</strong> from my degree to real-world product and engineering challenges.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-row reveal">
+      <p><strong>Open to internship opportunities.</strong> If you're looking for a motivated third-year CSBS student who's eager to learn and contribute, I'd love to connect.</p>
+      <a href="mailto:m.aryan@mitwpu.edu.in" class="btn btn-primary">Reach Out →</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2025 M. Aryan</p>
+    <div style="display:flex;gap:24px;">
+      <a href="education.html">Education</a>
+      <a href="projects.html">Projects</a>
+      <a href="mailto:m.aryan@mitwpu.edu.in">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

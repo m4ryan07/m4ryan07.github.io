@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Education — M Aryan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --border: #1e1e2e;
+      --accent: #7c6af7;
+      --accent2: #4fd1c5;
+      --text: #e8e8f0;
+      --muted: #6b6b80;
+      --card: #13131c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+    .page-header {
+      padding: 160px 48px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .page-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px 100px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* PERSONAL DETAILS */
+    .personal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 72px;
+    }
+
+    .detail-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 22px;
+      transition: border-color 0.2s;
+    }
+
+    .detail-card:hover { border-color: rgba(124,106,247,0.4); }
+
+    .detail-card .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .detail-card .value {
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* TIMELINE */
+    .timeline-section { margin-bottom: 64px; }
+
+    .timeline-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .timeline-section h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 32px 32px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -21px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 3px rgba(124,106,247,0.2);
+    }
+
+    .timeline-item .year {
+      font-size: 0.78rem;
+      color: var(--accent2);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .timeline-item h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .timeline-item .institution {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .timeline-item .result {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* CGPA TABLE */
+    .cgpa-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+
+    .cgpa-table th {
+      text-align: left;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cgpa-table td {
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(30,30,46,0.5);
+    }
+
+    .cgpa-table tr:last-child td { border-bottom: none; }
+
+    .cgpa-table tr:hover td { background: rgba(124,106,247,0.03); }
+
+    .cgpa-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bar-track {
+      flex: 1;
+      height: 6px;
+      background: var(--border);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(to right, var(--accent), var(--accent2));
+      transition: width 1s ease;
+    }
+
+    .score-val {
+      font-weight: 600;
+      color: var(--text);
+      min-width: 36px;
+      text-align: right;
+    }
+
+    .pending {
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.88rem;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer p { font-size: 0.85rem; color: var(--muted); }
+    footer a { color: var(--muted); font-size: 0.85rem; text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .page-header, main { padding-left: 24px; padding-right: 24px; }
+      footer { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">M<span>.</span>Aryan</a>
+    <ul class="nav-links">
+      <li><a href="education.html" class="active">Education</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="mailto:m.aryan@mitwpu.edu.in">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <p class="page-label">Background</p>
+    <h1 class="page-title">Education</h1>
+  </div>
+
+  <main>
+
+    <!-- PERSONAL DETAILS -->
+    <div class="personal-grid reveal">
+      <div class="detail-card">
+        <p class="label">Full Name</p>
+        <p class="value">M. Aryan</p>
+      </div>
+      <div class="detail-card">
+        <p class="label">Date of Birth</p>
+        <p class="value">6 November 2004</p>
+      </div>
+      <div class="detail-card">
+        <p class="label">Email</p>
+        <p class="value">m.aryan@mitwpu.edu.in</p>
+      </div>
+      <div class="detail-card">
+        <p class="label">Nationality</p>
+        <p class="value">Indian</p>
+      </div>
+    </div>
+
+    <!-- SCHOOLING -->
+    <div class="timeline-section reveal">
+      <h2>Academic Timeline</h2>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <p class="year">2019</p>
+          <h3>Class 10 — KVCMM</h3>
+          <p class="institution">Secondary School Certificate</p>
+          <p class="result">Score: 75%</p>
+        </div>
+
+        <div class="timeline-item">
+          <p class="year">2021</p>
+          <h3>Class 12 — KVCMM</h3>
+          <p class="institution">Higher Secondary Certificate</p>
+          <p class="result">Score: 71%</p>
+        </div>
+
+        <div class="timeline-item">
+          <p class="year">2021 — Entrance</p>
+          <h3>MHT-CET</h3>
+          <p class="institution">Maharashtra Common Entrance Test</p>
+          <p class="result">Percentile: 91%ile — Secured admission to MIT Pune</p>
+        </div>
+
+        <div class="timeline-item">
+          <p class="year">2022 — Present</p>
+          <h3>B.Tech — Computer Science & Business Systems</h3>
+          <p class="institution">MIT World Peace University, Pune</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CGPA TABLE -->
+    <div class="timeline-section reveal">
+      <h2>Semester Performance</h2>
+      <table class="cgpa-table">
+        <thead>
+          <tr>
+            <th>Semester</th>
+            <th>SGPA</th>
+            <th>Progress</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Semester 1</td>
+            <td class="score-val">8.00</td>
+            <td>
+              <div class="cgpa-bar">
+                <div class="bar-track"><div class="bar-fill" style="width: 80%"></div></div>
+                <span class="score-val">8.00</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Semester 2</td>
+            <td class="score-val">8.25</td>
+            <td>
+              <div class="cgpa-bar">
+                <div class="bar-track"><div class="bar-fill" style="width: 82.5%"></div></div>
+                <span class="score-val">8.25</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Semester 3</td>
+            <td class="score-val">8.00</td>
+            <td>
+              <div class="cgpa-bar">
+                <div class="bar-track"><div class="bar-fill" style="width: 80%"></div></div>
+                <span class="score-val">8.00</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Semester 4</td>
+            <td class="score-val">8.10</td>
+            <td>
+              <div class="cgpa-bar">
+                <div class="bar-track"><div class="bar-fill" style="width: 81%"></div></div>
+                <span class="score-val">8.10</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Semester 5</td>
+            <td colspan="2"><span class="pending">Currently enrolled</span></td>
+          </tr>
+          <tr>
+            <td>Semesters 6–8</td>
+            <td colspan="2"><span class="pending">Yet to be completed</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:20px; padding:16px 20px; background:var(--card); border:1px solid rgba(124,106,247,0.25); border-radius:10px; display:inline-flex; gap:24px; align-items:center;">
+        <span style="font-size:0.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">Overall CGPA</span>
+        <span style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--accent);">8.05</span>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2025 M. Aryan</p>
+    <div style="display:flex;gap:24px;">
+      <a href="projects.html">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="mailto:m.aryan@mitwpu.edu.in">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
